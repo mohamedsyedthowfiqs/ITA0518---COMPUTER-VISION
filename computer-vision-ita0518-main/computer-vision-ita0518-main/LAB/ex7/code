@@ -1,0 +1,28 @@
+import cv2
+
+# Read captured video
+cap = cv2.VideoCapture("input.mp4")
+
+while True:
+    ret, frame = cap.read()
+
+    if not ret:
+        break
+
+    cv2.imshow("Video", frame)
+
+    # Press S for slow motion
+    key = cv2.waitKey(50) & 0xFF
+
+    if key == ord('s'):
+        cv2.waitKey(150)
+
+    # Press F for fast motion
+    elif key == ord('f'):
+        cv2.waitKey(1)
+
+    elif key == ord('q'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()

@@ -1,0 +1,25 @@
+import cv2  # type: ignore[reportMissingImports]
+import matplotlib.pyplot as plt   # type: ignore[reportMissingImports]
+
+image = cv2.imread("input.jpg")
+
+image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
+blurred_image = cv2.GaussianBlur(image_rgb, (5, 5), 0)
+
+plt.figure(figsize=(10, 5))
+
+plt.subplot(1, 2, 1)
+plt.imshow(image_rgb)
+plt.title("Original Image")
+plt.axis("off")
+
+plt.subplot(1, 2, 2)
+plt.imshow(blurred_image)
+plt.title("Gaussian Blurred Image")
+plt.axis("off")
+
+plt.show()
+
+cv2.imwrite("blurred_image.jpg",
+            cv2.cvtColor(blurred_image, cv2.COLOR_RGB2BGR))

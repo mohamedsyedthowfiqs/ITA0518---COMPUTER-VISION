@@ -1,0 +1,18 @@
+import cv2
+import matplotlib.pyplot as plt # type: ignore[reportMissingImports]
+
+def analyze_histogram(image_path):
+    img = cv2.imread(image_path)
+
+    colors = ('b', 'g', 'r')
+
+    for i, color in enumerate(colors):
+        hist = cv2.calcHist([img], [i], None, [256], [0, 256])
+        plt.plot(hist, color=color)
+
+    plt.title("Color Histogram")
+    plt.xlabel("Color Level")
+    plt.ylabel("Frequency")
+    plt.show()
+
+analyze_histogram("input.jpg")

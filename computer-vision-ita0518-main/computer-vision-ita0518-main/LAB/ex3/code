@@ -1,0 +1,31 @@
+import cv2   # type: ignore[reportMissingImports]
+import matplotlib.pyplot as plt   # type: ignore[reportMissingImports]
+
+
+image = cv2.imread("input.jpg")
+
+if image is None:
+    print("Error: Image not found!")
+    exit()
+
+
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+edges = cv2.Canny(gray, 100, 200)
+
+plt.figure(figsize=(10, 5))
+
+plt.subplot(1, 2, 1)
+plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+plt.title("Original Image")
+plt.axis("off")
+
+plt.subplot(1, 2, 2)
+plt.imshow(edges, cmap="gray")
+plt.title("Canny Edge Detection")
+plt.axis("off")
+
+plt.show()
+
+# Save the outline image
+cv2.imwrite("canny_edges.jpg", edges)
